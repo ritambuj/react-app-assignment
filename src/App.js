@@ -29,7 +29,11 @@ function App() {
       .then(json => setTableContent(json));
   }, []);
 
-  const may = tableContent.filter(function(v){
+  let newtableContent = tableContent.filter(function(v){
+    return v.Type==='A'
+  })
+
+  const may = newtableContent.filter(function(v){
     return v.Date.includes('/05')
   }
   );
@@ -61,7 +65,7 @@ function App() {
     <div className="App">
       {/* <header className="App-header">
       </header> */}
-<Dropdown options={options} value={defaultOption} placeholder="Select an option" />;
+<Dropdown options={options} value={defaultOption} placeholder="Select an option" />
 
 {/* <Dropdown>
   <Dropdown.Toggle variant="success" id="dropdown-basic">
@@ -78,7 +82,7 @@ function App() {
       <BarChart
         width={1024}
         height={300}
-        data={june}
+        data={may}
         margin={{
           top: 50, right: 30, left: 20, bottom: 5,
         }}
