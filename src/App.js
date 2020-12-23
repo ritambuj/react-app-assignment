@@ -3,21 +3,22 @@ import React, { useState, useEffect } from "react";
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 } from 'recharts';
-// import Dropdown from 'react-bootstrap/Dropdown'
 // import Button from 'react-bootstrap/Button';
 // import DropdownButton from 'react-bootstrap/DropdownButton'
 
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
+// import { render } from '@testing-library/react';
 
 
 function App() {
 
-  // dropdown menu
-  const options = [
-    'may', 'june', 'july', 'aug', 'sep', 'oct'
+
+
+  const options2 = [
+    'Type A', 'Type B', 'Type C', 'Type D', 'Type E', 'Type F'
   ];
-  const defaultOption = options[0];
+  const defaultOption2 = options2[0];
 
 
   // API
@@ -37,47 +38,37 @@ function App() {
     return v.Date.includes('/05')
   }
   );
-  const june = tableContent.filter(function(v){
-    return v.Date.includes('/06')
-  }
-  );
-  const july = tableContent.filter(function(v){
-    return v.Date.includes('/07')
-  }
-  );
-  const aug = tableContent.filter(function(v){
-    return v.Date.includes('/08')
-  }
-  );
-  const sep = tableContent.filter(function(v){
-    return v.Date.includes('/09')
-  }
-  );
-  const oct = tableContent.filter(function(v){
-    return v.Date.includes('/10')
-  }
-  );
- 
+    // dropdown menu
 
-  // console.log(oct);
+
+
+  function handleChange(e){
+
+
+  }
+  const gettingTypes = tableContent.map(q => q.Type);
+  const types = gettingTypes.filter((q, idx) => 
+  gettingTypes.indexOf(q) === idx)
+
+  const defaultOption = types[0];
+
 
   return (
     <div className="App">
-      {/* <header className="App-header">
-      </header> */}
-<Dropdown options={options} value={defaultOption} placeholder="Select an option" />
+      <div >
+        <Dropdown options={types} value={defaultOption} placeholder="Select an option" />
+      </div>
+      <div >
+        <Dropdown options={options2} value={defaultOption2} placeholder="Select an option" />
+      </div>
+      <select id="dropdown" onChange={handleChange} >
+        <option value="Type A">Type A</option>
+        <option value="Type B">Type B</option>
+        <option value="Type C">Type C</option>
+        <option value="Type D">Type D</option>
+        <option value="Type E">Type E</option>
+      </select>
 
-{/* <Dropdown>
-  <Dropdown.Toggle variant="success" id="dropdown-basic">
-    Dropdown Button
-  </Dropdown.Toggle>
-
-  <Dropdown.Menu>
-    <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-    <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-    <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-  </Dropdown.Menu>
-</Dropdown> */}
 
       <BarChart
         width={1024}
@@ -100,5 +91,5 @@ function App() {
   );
 }
 
-export default App;
 
+export default App;
